@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:o="http://omnifaces.org/ui">
+	<h:head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+		<title>Search Results</title>
+		<style>
+			
+		</style>
+	</h:head>
+	<h:body>
+
+		<div class="container-fluid" style="width : 1130px ; margin-right : 0px"><!-- container start -->
+		
+		
+			<aside class="fixed-top" style="height:650px; width:220px ; background-color:#808080 ">
+			
+				<br/>
+				<img src="resources/images/user.png" height="150" width="150" style= "margin-left : auto ; margin-right: auto;display: block;margin-bottom : 25px"/>
+				
+				<H4 style="text-align:center;">#{user.firstName} #{user.lastName}</H4>
+				<br/><br/>
+				<h:link class="btn btn-dark" value="Home"  style="margin-left:65px;margin-bottom:20px ; color:white" outcome="recuiter-home.xhtml"/>
+				<h:link class="btn btn-dark" value="My profile"  style="margin-left:50px;margin-bottom:20px ; color:white" outcome="profile1.xhtml"/>
+				<h:link class="btn btn-dark" value="Add Company"  style="margin-left:35px; color:white" outcome="add-company.xhtml"/>
+				<h:link class="btn btn-dark" value="Logout"  style="margin-left:65px;margin-top:20px ; color:white" outcome="login.xhtml"/>
+			</aside>
+			
+			
+			<h:form style="margin-bottom:50px; margin-top:18px;">
+				<span style="margin-right:52px;color:blue;">Search Jobs :</span>
+				Job Title/Keywords :&#160;<h:inputText value="#{job.searchKeywords}">
+				</h:inputText>
+				&#160;
+				Location :
+				&#160; 
+				Country
+				<h:selectOneMenu value="#{job.searchLocationCountry}">
+					<f:selectItem itemValue="USA"></f:selectItem>
+					<f:selectItem itemValue="Germany"></f:selectItem>
+					<f:selectItem itemValue="Tunisia"></f:selectItem>
+					<f:selectItem itemValue="WorldWide"></f:selectItem>
+					<f:ajax event="change" listener="#{job.updateCities(job.countriesCities2 , job.cities2, job.searchLocationCountry)}"/>
+					<f:ajax event="change" execute="@form" render="city"/>
+				</h:selectOneMenu>
+				&#160;
+				City
+				<h:selectOneMenu value="#{job.searchLocationCity}" id="city">
+					<f:selectItems value="#{job.cities2}" />
+				</h:selectOneMenu>
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+				<h:commandButton value="Search" action ="search-results1.xhtml">
+					<f:actionListener binding="${job.searchJobs1(company.tempCompanyId, user.uid)}"/>
+				</h:commandButton>
+			</h:form>
+			
+			<h:outputText style="" value="NO RESULT FOUND!" rendered="${job.searchedJobs.size()==0}"/>
+			
+			<h:dataTable class="table" value="${job.searchedJobs}" var ="item"  style="margin-top:13px;">
+				
+				<h:column>
+					<o:graphicImage dataURI="true" value = "#{item.company.companyLogo}" style= "height:70px;width:70px ; float:left;"/>
+  					<H5 style="margin-left:100px">#{item.title}</H5>
+  					<span style="margin-left:28px;">#{item.company.name}</span><br/>
+  					<span style="margin-left:28px;">#{item.location}</span><br/>
+  					<h:form style="margin-left:70px;">
+  						
+  						<br/>
+						<h:commandButton class="btn btn-dark" value="See Candidates" style="margin-left:30px ;" action="job-candidates.xhtml">
+							<f:actionListener binding="${job.updateTempJobId(item.jobid)}" />
+						</h:commandButton>
+						
+						<h:commandButton class="btn btn-dark" value="Delete" style="margin-left:30px;">
+							<f:ajax event="click" listener="#{job.deleteJob(item.jobid)}" render="@all"/>
+						</h:commandButton>
+						<br/><br/>
+					
+						<h:outputText value="Expired" rendered="#{job.hasExpired(item.jobid)}" style="color : red ; margin-left:30px; margin-bottom:10px ;display : block"/>
+						
+						<h:commandLink value="See details"  style="margin-left:28px;" action="job-details1.xhtml">
+							<f:actionListener binding="${job.updateTempJobId(item.jobid)}"/>
+						</h:commandLink>
+						
+					</h:form>
+				</h:column>
+									
+			</h:dataTable>
+
+		</div><!-- container end -->
+		
+		<script src="/resources/js/bootstrap.min.js"></script>
+		<script src="/resources/jquery.slim.min.js"></script>
+		<script src="/resources/popper.min.js"></script>
+		
+	</h:body>
+</html>

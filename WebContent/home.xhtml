@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:o="http://omnifaces.org/ui">
+	<h:head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+		<title>Home</title>
+		<style>
+			.t1
+			{
+				margin-bottom : 30px;
+			}
+		</style>
+	</h:head>
+	<h:body>
+	
+		<!-- container start -->
+		<div class="container-fluid" style=""><!-- container start -->
+			<br/>
+			<H1 style= "text-align : center ; margin-bottom:70px;">Welcome to Dream Job</H1>
+			
+			<h:dataTable class="table" value="${user.loadAllJobs()}" var ="item"  style="margin-top:13px;">
+				
+				<h:column>
+						<o:graphicImage dataURI= "true" value = "#{item.company.companyLogo}" style= "height:70px;width:70px ; float:left;"/>
+  						<H5 style="margin-left:100px">#{item.title}</H5>
+  						<span style="margin-left:28px;">#{item.company.name}</span><br/>
+  						<span style="margin-left:28px;">#{item.location}</span>
+  						<br/>
+  						<h:form style="margin-left:70px;">
+  						
+  							<br/>
+							<h:commandButton class="btn btn-dark" value="Apply" style="margin-left:30px ;" action="login.xhtml"/>
+						
+						</h:form>
+				</h:column>
+									
+			</h:dataTable>
+
+		</div><!-- container end -->
+		
+		<script src="/resources/js/bootstrap.min.js"></script>
+		<script src="/resources/jquery.slim.min.js"></script>
+		<script src="/resources/popper.min.js"></script>
+		
+	</h:body>
+</html>

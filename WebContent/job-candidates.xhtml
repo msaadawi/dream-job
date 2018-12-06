@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:o="http://omnifaces.org/ui" >
+	<h:head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+		<title>Job Candidates</title>
+		<style>
+			
+		</style>
+	</h:head>
+	<h:body>
+
+		<div class="container-fluid" style="width : 1130px ; margin-right : 0px"><!-- container start -->
+		
+		
+			<aside class="fixed-top" style="height:650px; width:220px ; background-color:#808080 ">
+			
+				<br/>
+				<img src="resources/images/user.png" height="150" width="150" style= "margin-left : auto ; margin-right: auto;display: block;margin-bottom : 25px"/>
+				
+				<H4 style="text-align:center;">#{user.firstName} #{user.lastName}</H4>
+				<br/><br/>
+				<h:link class="btn btn-dark" value="Home"  style="margin-left:65px;margin-bottom:20px ; color:white" outcome="recuiter-home.xhtml"/>
+				<h:link class="btn btn-dark" value="My profile"  style="margin-left:50px;margin-bottom:20px ; color:white" outcome="profile1.xhtml"/>
+				<h:link class="btn btn-dark" value="Add Company"  style="margin-left:35px; color:white" outcome="add-company.xhtml"/>
+				<h:link class="btn btn-dark" value="Logout"  style="margin-left:65px;margin-top:20px ; color:white" outcome="login.xhtml"/>
+			</aside>
+			
+			<br/><br/>
+			
+			<H4>Candidates for '#{job.searchJob(job.tempJobId).title} at #{job.searchJob(job.tempJobId).company.name} - #{job.searchJob(job.tempJobId).location}'(#{job.loadJobCandidates().size()}):</H4>
+			<br/>
+			
+			<h:dataTable class="table" value="${job.loadJobCandidates()}" var ="item"  style="margin-top:13px;">
+				
+				<h:column>
+					<f:facet name="header">First Name</f:facet>
+					#{item.firstName}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Last Name</f:facet>
+					#{item.lastName}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Phone Number</f:facet>
+					#{item.phoneNumber}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					#{item.email}
+				</h:column>
+				
+				<h:column>
+					<h:form>
+						<h:commandButton class="btn btn-dark btn-sm" value ="download CV" action="#{user.downloadUserCV(item.uid)}">
+						</h:commandButton>
+					</h:form>
+				</h:column>
+									
+			</h:dataTable>
+
+		</div><!-- container end -->
+		
+		<script src="/resources/js/bootstrap.min.js"></script>
+		<script src="/resources/jquery.slim.min.js"></script>
+		<script src="/resources/popper.min.js"></script>
+	</h:body>
+</html>

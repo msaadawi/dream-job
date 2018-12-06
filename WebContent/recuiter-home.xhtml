@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:o="http://omnifaces.org/ui" >
+	<h:head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+		<title>Recuiter Home</title>
+		<style>
+			
+		</style>
+	</h:head>
+	<h:body>
+
+		<div class="container-fluid" style="width : 1130px ; margin-right : 0px"><!-- container start -->
+		
+		
+			<aside class="fixed-top" style="height:650px; width:220px ; background-color:#808080 ">
+			
+				<br/>
+				<img src="resources/images/user.png" height="150" width="150" style= "margin-left : auto ; margin-right: auto;display: block;margin-bottom : 25px"/>
+				
+				<H4 style="text-align:center;">#{user.firstName} #{user.lastName}</H4>
+				<br/><br/>
+				<h:link class="btn btn-dark" value="Home"  style="margin-left:65px;margin-bottom:20px ; color:white" outcome="recuiter-home.xhtml"/>
+				<h:link class="btn btn-dark" value="My profile"  style="margin-left:50px;margin-bottom:20px ; color:white" outcome="profile1.xhtml"/>
+				<h:link class="btn btn-dark" value="Add Company"  style="margin-left:35px; color:white" outcome="add-company.xhtml"/>
+				<h:link class="btn btn-dark" value="Logout"  style="margin-left:65px;margin-top:20px ; color:white" outcome="login.xhtml"/>
+			</aside>
+			
+			<br/>
+			<h:outputText style="color:red" value="To upload jobs, add companies first and then add to them job offers!" rendered="${user.loadManagedCompanies().size()==0}"/>
+			
+			<h:form style="margin-bottom:50px; margin-top:18px;">
+				<h:commandLink value="Switch to User Home" style="float : right" action="user-home.xhtml">
+			
+				</h:commandLink>
+			</h:form>
+			
+			<H4>Companies You Manage(#{user.loadManagedCompanies().size()}):</H4>
+			<br/>
+			
+			<h:dataTable class="table" value="${user.loadManagedCompanies()}" var ="item"  style="margin-top:13px;">
+				
+				<h:column>
+				
+					<o:graphicImage dataURI="true" value = "#{item.companyLogo}" style= "height:70px;width:70px ; float:left;"/>
+  					<H5 style="margin-left:100px">#{item.name}</H5>
+  					<span style="margin-left:28px;">#{item.headquarters}</span><br/>
+  					
+  					<h:form style="margin-left:70px;">
+  						
+  						<br/>
+  						<h:commandButton class="btn btn-dark btn-sm" value="Upload job" style="margin-left:30px;" action= "upload-job.xhtml">
+  							<f:actionListener binding = "${company.updateTempCompanyId(item.cid)}" />
+						</h:commandButton>
+						
+						<h:commandButton class="btn btn-dark btn-sm" value="See jobs" style="margin-left:30px;" action= "company-jobs.xhtml">
+							<f:actionListener binding = "${company.updateTempCompanyId(item.cid)}" />
+						</h:commandButton>
+						
+						<h:commandButton class="btn btn-dark btn-sm" value="Delete" style="margin-left:30px;">
+							<f:ajax event="click" listener="#{company.deleteCompany(item.cid ,user.uid)}" render="@all"/>
+						</h:commandButton>
+								
+					</h:form>
+				</h:column>
+									
+			</h:dataTable>
+
+		</div><!-- container end -->
+		
+		<script src="/resources/js/bootstrap.min.js"></script>
+		<script src="/resources/jquery.slim.min.js"></script>
+		<script src="/resources/popper.min.js"></script>
+	</h:body>
+</html>

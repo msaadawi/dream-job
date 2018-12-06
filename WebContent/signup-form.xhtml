@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+		<style>
+			.errors
+			{
+				color: red;
+			}
+			span
+			{
+				color:red;
+			}
+		</style>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+		<title>Sign-up</title>
+	</h:head>
+	<h:body>
+		<div class="container-fluid bg-light" style="height : 110vh"><!-- container start -->
+			<br/>
+			<H3 style="margin-bottom:30px">Create an account</H3>
+			<h:form>
+				(<span>*</span>) required fields !
+				<br/><br/>
+				<span>*</span>First Name : <h:inputText value="#{user.firstName}" required ="true" id="firstName" requiredMessage="this field is required !"/>
+				<h:message for="firstName" styleClass="error"/>
+				<br/><br/>
+				<span>*</span>Last Name : <h:inputText value="#{user.lastName}" required="true" id="last_name" requiredMessage="this field is required !"/> 
+				<h:message for="lastName" styleClass="error"/>
+				<br/><br/>
+				<span>*</span>Email : <h:inputText value="#{user.email}"  required="true" id="email" requiredMessage="this field is required !" validator = "#{user.verifyEmailNonExistance}">     
+					<!-- <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> -->
+				</h:inputText> 
+				<h:message for="email" styleClass="error"/>
+				<br/><br/>
+				Phone number : <h:inputText value="#{user.phoneNumber}" id="phoneNumber" 
+				validatorMessage="please enter a valid Phone number. A valid phone number should start with your country-code">
+					<f:validateRegex pattern="(\+|00)\d{1,4}(\s)*\d{2,4}(\s)*\d{2,4}(\s)*\d{2,4}"/>
+				</h:inputText>
+				<h:message for="phoneNumber" styleClass="error"/>
+				
+				<br/><br/>
+				<span>*</span>Country :
+				
+				<h:selectOneMenu value="#{user.country}">
+					<f:selectItems value="#{user.countryOptions}"/>
+				</h:selectOneMenu>
+				
+				<br/><br/>
+				
+				Date Of birth :
+				<br/><br/>
+				Day : <h:selectOneMenu value="#{user.birthdayDay}">
+					<f:selectItem itemValue="1" itemLabel="1"></f:selectItem>
+					<f:selectItem itemValue="2" itemLabel="2"></f:selectItem>
+					<f:selectItem itemValue="3" itemLabel="3"></f:selectItem>
+					<f:selectItem itemValue="4" itemLabel="4"></f:selectItem>
+					<f:selectItem itemValue="5" itemLabel="5"></f:selectItem>
+					<f:selectItem itemValue="6" itemLabel="6"></f:selectItem>
+					<f:selectItem itemValue="7" itemLabel="7"></f:selectItem>
+					<f:selectItem itemValue="8" itemLabel="8"></f:selectItem>
+					<f:selectItem itemValue="9" itemLabel="9"></f:selectItem>
+					<f:selectItem itemValue="10" itemLabel="10"></f:selectItem>
+					<f:selectItem itemValue="11" itemLabel="11"></f:selectItem>
+					<f:selectItem itemValue="12" itemLabel="12"></f:selectItem>
+					<f:selectItem itemValue="13" itemLabel="13"></f:selectItem>
+					<f:selectItem itemValue="14" itemLabel="14"></f:selectItem>
+					<f:selectItem itemValue="15" itemLabel="15"></f:selectItem>
+					<f:selectItem itemValue="16" itemLabel="16"></f:selectItem>
+					<f:selectItem itemValue="17" itemLabel="17"></f:selectItem>
+					<f:selectItem itemValue="18" itemLabel="18"></f:selectItem>
+					<f:selectItem itemValue="19" itemLabel="19"></f:selectItem>
+					<f:selectItem itemValue="20" itemLabel="20"></f:selectItem>
+					<f:selectItem itemValue="21" itemLabel="21"></f:selectItem>
+					<f:selectItem itemValue="22" itemLabel="22"></f:selectItem>
+					<f:selectItem itemValue="23" itemLabel="23"></f:selectItem>
+					<f:selectItem itemValue="24" itemLabel="24"></f:selectItem>
+					<f:selectItem itemValue="25" itemLabel="25"></f:selectItem>
+					<f:selectItem itemValue="26" itemLabel="26"></f:selectItem>
+					<f:selectItem itemValue="27" itemLabel="27"></f:selectItem>
+					<f:selectItem itemValue="28" itemLabel="28"></f:selectItem>
+					<f:selectItem itemValue="29" itemLabel="29"></f:selectItem>
+					<f:selectItem itemValue="30" itemLabel="30"></f:selectItem>
+					<f:selectItem itemValue="31" itemLabel="31"></f:selectItem>
+				</h:selectOneMenu>
+				
+				Month : 
+				<h:selectOneMenu  value="#{user.birthdayMonth}">
+					<f:selectItem itemValue="1" itemLabel="1"></f:selectItem>
+					<f:selectItem itemValue="2" itemLabel="2"></f:selectItem>
+					<f:selectItem itemValue="3" itemLabel="3"></f:selectItem>
+					<f:selectItem itemValue="4" itemLabel="4"></f:selectItem>
+					<f:selectItem itemValue="5" itemLabel="5"></f:selectItem>
+					<f:selectItem itemValue="6" itemLabel="6"></f:selectItem>
+					<f:selectItem itemValue="7" itemLabel="7"></f:selectItem>
+					<f:selectItem itemValue="8" itemLabel="8"></f:selectItem>
+					<f:selectItem itemValue="9" itemLabel="9"></f:selectItem>
+					<f:selectItem itemValue="10" itemLabel="10"></f:selectItem>
+					<f:selectItem itemValue="11" itemLabel="11"></f:selectItem>
+					<f:selectItem itemValue="12" itemLabel="12"></f:selectItem>
+				</h:selectOneMenu>
+				
+				Year :
+				<h:selectOneMenu  value="#{user.birthdayYear}">
+					<f:selectItem itemValue="1970" itemLabel="1970"></f:selectItem>
+					<f:selectItem itemValue="1971" itemLabel="1971"></f:selectItem>
+					<f:selectItem itemValue="1972" itemLabel="1972"></f:selectItem>
+					<f:selectItem itemValue="1973" itemLabel="1973"></f:selectItem>
+					<f:selectItem itemValue="1974" itemLabel="1974"></f:selectItem>
+					<f:selectItem itemValue="1975" itemLabel="1975"></f:selectItem>
+					<f:selectItem itemValue="1976" itemLabel="1976"></f:selectItem>
+					<f:selectItem itemValue="1977" itemLabel="1977"></f:selectItem>
+					<f:selectItem itemValue="1978" itemLabel="1978"></f:selectItem>
+					<f:selectItem itemValue="1979" itemLabel="1979"></f:selectItem>
+					<f:selectItem itemValue="1980" itemLabel="1980"></f:selectItem>
+					<f:selectItem itemValue="1981" itemLabel="1981"></f:selectItem>
+					<f:selectItem itemValue="1982" itemLabel="1982"></f:selectItem>
+					<f:selectItem itemValue="1983" itemLabel="1983"></f:selectItem>
+					<f:selectItem itemValue="1984" itemLabel="1984"></f:selectItem>
+					<f:selectItem itemValue="1985" itemLabel="1985"></f:selectItem>
+					<f:selectItem itemValue="1986" itemLabel="1986"></f:selectItem>
+					<f:selectItem itemValue="1987" itemLabel="1987"></f:selectItem>
+					<f:selectItem itemValue="1988" itemLabel="1988"></f:selectItem>
+					<f:selectItem itemValue="1989" itemLabel="1989"></f:selectItem>
+					<f:selectItem itemValue="1990" itemLabel="1990"></f:selectItem>
+					<f:selectItem itemValue="1991" itemLabel="1991"></f:selectItem>
+					<f:selectItem itemValue="1992" itemLabel="1992"></f:selectItem>
+					<f:selectItem itemValue="1993" itemLabel="1993"></f:selectItem>
+					<f:selectItem itemValue="1994" itemLabel="1994"></f:selectItem>
+					<f:selectItem itemValue="1995" itemLabel="1995"></f:selectItem>
+					<f:selectItem itemValue="1996" itemLabel="1996"></f:selectItem>
+					<f:selectItem itemValue="1997" itemLabel="1997"></f:selectItem>
+					<f:selectItem itemValue="1998" itemLabel="1998"></f:selectItem>
+					<f:selectItem itemValue="1999" itemLabel="1999"></f:selectItem>
+					<f:selectItem itemValue="2000" itemLabel="2000"></f:selectItem>
+					
+				</h:selectOneMenu>
+				
+				<br/><br/>
+				
+				<span>*</span>Password : <h:inputSecret value="#{user.password}" required ="true" id="password" requiredMessage="this field is required !" validatorMessage="Password should contain at least 6 characters with at least: one uppercase letter, one digit and one special symbol !">
+					
+					<f:validateRegex pattern="((?=.*\d)(?=.*[A-Z])(?=.*\W).{6,20})"/>
+				
+				</h:inputSecret>
+				<h:message for="password" styleClass="error"/>
+				
+				<br/><br/><br/><br/>
+				<h:commandButton class="btn btn-dark " value="Create Account" action="#{user.addUser}"/>
+			</h:form>
+		</div><!-- container end -->
+		
+		
+		<script src="resources/js/bootstrap.min.js"></script>
+		<script src="resources/jquery.slim.min.js"></script>
+		<script src="resources/popper.min.js"></script>
+		
+		
+	</h:body>
+</html>

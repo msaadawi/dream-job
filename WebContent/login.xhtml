@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+		<title>Login</title>
+		<style>
+			.error
+			{
+				color : red;
+			}
+		</style>
+	</h:head>
+	<h:body>
+	
+		<!-- container start -->
+		<div class="container-fluid bg-light" style="height : 100vh">
+			<h:messages styleClass="error"/>
+			<br/>
+			<H3>SignIn to continue :</H3>
+			<br/><br/>
+			<h:form>
+				Email :
+				<h:inputText value="#{user.email}" required ="true" id="email" requiredMessage="email field is required !" validator="#{user.validatePassword}" style="margin-left:33px">
+					<f:attribute name="passwrd" value="#{passwrd}" />	
+				</h:inputText>
+				
+				
+				<br/><br/>
+				
+				Password :&nbsp;
+				<h:inputSecret value="#{user.password}" required ="true" id="passwrd" requiredMessage="password field is required !" binding="#{passwrd}"/>
+				
+				<br/><br/>
+				<h:commandButton class="btn btn-dark" value="Login" action= "#{user.updateUser}" style="margin-left : 225px;"/>
+				<br/><br/>
+				<span>Doesn't have an account yet?  </span>
+				<h:link value="SignUp" outcome="signup-form.xhtml"/>
+			</h:form>
+			
+		</div><!-- container end -->
+		
+		
+		<script src="/resources/js/bootstrap.min.js"></script>
+		<script src="/resources/jquery.slim.min.js"></script>
+		<script src="/resources/popper.min.js"></script>
+		
+		
+	</h:body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:o="http://omnifaces.org/ui">
+	<h:head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+		<title>Home</title>
+		<style>
+			.t1
+			{
+				margin-bottom : 30px;
+			}
+		</style>
+	</h:head>
+	<h:body>
+
+		<div class="container-fluid" style="width : 1130px ; margin-right : 0px"><!-- container start -->
+		
+		
+			<aside class="fixed-top" style="height:650px; width:220px ; background-color:#808080 ">
+			
+				<br/>
+				<img src="resources/images/user.png" height="150" width="150" style= "margin-left : auto ; margin-right: auto;display: block;margin-bottom : 25px"/>
+				
+				<H4 style="text-align:center;">#{user.firstName} #{user.lastName}</H4>
+				<br/><br/>
+				<h:link class="btn btn-dark" value="Home"  style="margin-left:65px;margin-bottom:20px ; color:white" outcome="user-home.xhtml"/>
+				<h:link class="btn btn-dark" value="My profile"  style="margin-left:50px;margin-bottom:20px ; color:white" outcome="profile.xhtml"/>
+				<h:link class="btn btn-dark" value="show applied jobs"  style="margin-left:25px ; color:white" outcome="user-applications.xhtml"/>
+				<br/><br/>
+				<h:link class="btn btn-dark" value="show saved jobs"  style="margin-left:31px ; color:white" outcome="user-saved-jobs.xhtml"/>
+				<br/>
+				<h:link class="btn btn-dark" value="Logout"  style="margin-left:65px;margin-top:20px ; color:white" outcome="login.xhtml"/>
+			</aside>
+			
+			<h:outputText style="color:red" value="Please, Upload your CV to your profile first to have the ability to apply for jobs&lt;br/&gt;" rendered="${!user.CVIsUploaded()}" escape="false"/>
+			
+			
+			<o:graphicImage dataURI="true" value = "${job.searchJob(job.tempJobId).company.companyLogo}" style= "height:150px;width:150px ; float:left;"/><br/>
+  			<H4 style="margin-right:20px">&#160;&#160;&#160;&#160;<b>#{job.searchJob(job.tempJobId).title}</b></H4>
+  			<span style="margin-left:28px;">#{job.searchJob(job.tempJobId).company.name}</span><br/>
+  			<span style="margin-left:28px;">#{job.searchJob(job.tempJobId).location}</span><br/><br/>
+  			<h:outputText value="Expired" rendered="${job.hasExpired(job.tempJobId)}" style="color : red ; margin-left:30px;"/><br/><br/>
+  			<br/><br/>
+  			<b>Additional informations:</b><br/><br/>
+  			Job type : #{job.searchJob(job.tempJobId).type}<br/>
+  			Experience level : #{job.searchJob(job.tempJobId).experienceLevel}<br/>
+  			Workplace : #{job.searchJob(job.tempJobId).workplace}<br/>
+  			<br/><br/><br/>
+			<h:outputText value="${job.formatJobDescription(job.searchJob(job.tempJobId).jobDescription)}" style="" escape ="false"/><br/><br/><br/>
+			
+			<br/><br/>
+			
+			<h:form style="">
+
+				<h:commandButton class="btn btn-dark" value="Apply" rendered="${!job.hasExpired(job.tempJobId) and user.possibilityToApply(job.tempJobId) and user.CVIsUploaded()}">
+					<f:ajax event="click" listener="#{job.apply(user.uid, job.tempJobId)}"/>
+					<f:ajax event="click" execute="@form" render="@form" />
+				</h:commandButton>
+				
+				<h:outputText value="Unable to apply to this job!" rendered="${user.possibilityToApply(job.tempJobId) and !user.CVIsUploaded() and !job.hasExpired(job.tempJobId)}" style="color: red ;margin-left:35px;"/>
+				
+				<h:commandButton class="btn btn-dark" value="save" rendered="${!job.hasExpired(job.tempJobId) and user.possibilityToApply(job.tempJobId) and user.possibilityToSave(job.tempJobId)}" style="margin-left:30px;" action="#{job.save1()}">
+					<f:ajax event="click" listener="#{job.save(user.uid, job.tempJobId)}"/>
+					<f:ajax event="click" execute="@form" render="@form" />
+				</h:commandButton>
+				
+				<h:outputText value="Applied" rendered="${!user.possibilityToApply(job.tempJobId)}" style="color : #00e600 ;margin-left:5px ;"/>
+				<h:outputText value="saved" rendered="${!job.hasExpired(job.tempJobId) and !user.possibilityToSave(job.tempJobId)and user.possibilityToApply(job.tempJobId)}" style="color : #3385ff ; margin-left:30px ;"/>
+						
+											
+			</h:form>
+			
+			<br/><br/><br/>
+			
+		</div><!-- container end -->
+	</h:body>
+</html>
