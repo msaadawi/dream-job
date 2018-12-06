@@ -82,7 +82,7 @@ xmlns:o="http://omnifaces.org/ui">
 						</h:commandButton>
 						<br/><br/>
 					
-						<h:outputText value="Expired" rendered="#{job.hasExpired(item.jobid)}" style="color : red ; margin-left:30px; margin-bottom:10px ;display : block"/>
+						<h:outputText value="Expired" rendered="${job.hasExpired(item.jobid)}" style="color : red ; margin-left:30px; margin-bottom:10px ;display : block"/>
 						
 						<h:commandLink value="See details"  style="margin-left:28px;" action="job-details1.xhtml">
 							<f:actionListener binding="${job.updateTempJobId(item.jobid)}"/>

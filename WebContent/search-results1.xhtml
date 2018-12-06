@@ -76,12 +76,13 @@ xmlns:o="http://omnifaces.org/ui">
 							<f:actionListener binding="${job.updateTempJobId(item.jobid)}" />
 						</h:commandButton>
 						
-						<h:commandButton class="btn btn-dark" value="Delete" style="margin-left:30px;">
-							<f:ajax event="click" listener="#{job.deleteJob(item.jobid)}" render="@all"/>
+						<h:commandButton class="btn btn-dark" value="Delete" style="margin-left:30px;" action="search-results1.xhtml">
+							<f:actionListener binding="#{job.deleteJob(item.jobid)}"/>
+							<f:actionListener binding="${job.searchJobs1(company.tempCompanyId, user.uid)}"/>
 						</h:commandButton>
 						<br/><br/>
 					
-						<h:outputText value="Expired" rendered="#{job.hasExpired(item.jobid)}" style="color : red ; margin-left:30px; margin-bottom:10px ;display : block"/>
+						<h:outputText value="Expired" rendered="${job.hasExpired(item.jobid)}" style="color : red ; margin-left:30px; margin-bottom:10px ;display : block"/>
 						
 						<h:commandLink value="See details"  style="margin-left:28px;" action="job-details1.xhtml">
 							<f:actionListener binding="${job.updateTempJobId(item.jobid)}"/>

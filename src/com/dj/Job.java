@@ -988,6 +988,7 @@ public class Job
 	{
 		DateFormat frmt = new SimpleDateFormat("yyyy-MM-dd");
 		DButil DBu = DButil.getInstance();
+		System.out.println(jobid);
 		Job job =DBu.getJob(jobid);
 		String[] parts = new SimpleDateFormat("yyyy-MM-dd").format(job.getExpirationDate()).split("-");
 		if(Integer.parseInt(parts[0]) < Integer.parseInt(frmt.format(new Date()).split("-")[0]))
