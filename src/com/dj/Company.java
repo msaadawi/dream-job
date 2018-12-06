@@ -122,12 +122,6 @@ public class Company
 		this.companyLogo = companyLogo;
 	}
 
-
-	public Company(Integer cid) {
-		super();
-		this.cid = cid;
-	}
-
 	public Integer getCid() {
 		return cid;
 	}

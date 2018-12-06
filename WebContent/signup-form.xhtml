@@ -34,7 +34,6 @@ xmlns:f="http://xmlns.jcp.org/jsf/core">
 				<h:message for="lastName" styleClass="error"/>
 				<br/><br/>
 				<span>*</span>Email : <h:inputText value="#{user.email}"  required="true" id="email" requiredMessage="this field is required !" validator = "#{user.verifyEmailNonExistance}">     
-					<!-- <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> -->
 				</h:inputText> 
 				<h:message for="email" styleClass="error"/>
 				<br/><br/>
@@ -53,7 +52,7 @@ xmlns:f="http://xmlns.jcp.org/jsf/core">
 				
 				<br/><br/>
 				
-				Date Of birth :
+				<span>*</span>Date Of birth :
 				<br/><br/>
 				Day : <h:selectOneMenu value="#{user.birthdayDay}">
 					<f:selectItem itemValue="1" itemLabel="1"></f:selectItem>

@@ -180,12 +180,6 @@ public class Job
 		this.uploader = uploader;
 	}
 
-	public Job(Integer jobid) {
-		super();
-		this.jobid = jobid;
-	}
-
-
 	public Integer getJobid() {
 		return jobid;
 	}
@@ -259,8 +253,7 @@ public class Job
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
-	////////////////
+
 	public String getType() {
 		return type;
 	}
@@ -282,8 +275,6 @@ public class Job
 	public void setExperienceLevel(String experienceLevel) {
 		this.experienceLevel = experienceLevel;
 	}
-	
-//////////////////	
 
 	public Date getPostDate() {
 		return postDate;
@@ -312,8 +303,6 @@ public class Job
 	public void setExpirationDateYear(String expirationDateYear) {
 		this.expirationDateYear = expirationDateYear;
 	}
-
-/////////////////	
 	
 	public String getExpirationDateMonth() {
 		return expirationDateMonth;

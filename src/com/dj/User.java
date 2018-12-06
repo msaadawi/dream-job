@@ -152,20 +152,6 @@ public class User
 		this.CV = CV;
 	}
 
-
-
-	public User(int uid) {
-		super();
-		this.uid = uid;
-	}
-
-	public ArrayList<String> getCountryOptions() {
-		return countryOptions;
-	}
-	public void setCountryOptions(ArrayList<String> countryOptions) 
-	{
-		this.countryOptions = countryOptions;
-	}
 	public String getCountry() 
 	{
 		return country;
@@ -174,8 +160,6 @@ public class User
 	{
 			this.country=Country;
 	}
-	
-	
 	
 	public int getUid() {
 		return uid;
@@ -240,6 +224,14 @@ public class User
 		this.password = password;
 	}
 
+	public ArrayList<String> getCountryOptions() {
+		return countryOptions;
+	}
+	public void setCountryOptions(ArrayList<String> countryOptions) 
+	{
+		this.countryOptions = countryOptions;
+	}
+	
 	public String getBirthdayYear() {
 		return birthdayYear;
 	}
@@ -568,21 +560,6 @@ public class User
 		}
 	}
 	
-	//method for getting cv from database and save it to file system
-	/*
-	public void downloadUserCV(int uid) throws Exception
-	{
-		File destination = new File("C:\\uploads\readCv.pdf");
-		FileOutputStream fos = new FileOutputStream(destination);
-		InputStream input = result.getBinaryStream("cv");
-		byte[] buffer = new byte[1024];
-		while(input.read(buffer)>0)
-		{
-			fos.write(buffer);
-		}
-	}
-	*/
-	
 	// if cv is already uploaded , return true , else return false
 	public boolean CVIsUploaded()
 	{
@@ -653,7 +630,7 @@ public class User
 			}
 			else
 			{	
-				Path fileLocation = Paths.get("C:/Users/clark/eclipse-neon-3-workspace/DreamJob/WebContent/resources/images/undefined.png");
+				Path fileLocation = Paths.get("C:/Users/clark/eclipse-neon-3-workspace/Dream-Job/WebContent/resources/images/undefined.png");
 				byte[] data = Files.readAllBytes(fileLocation);
 				company.setCompanyLogo(data);
 			}
