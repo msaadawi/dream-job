@@ -7,7 +7,7 @@ This project is a Job Searching and Posting Java EE web application created usin
 - As a normal user ,you can seach , save and apply for jobs. You can delete saved jobs or applications. You can also upload your resume/CV ...<br/>
 - As a recuiter , you can add a company , upload to it job offers and manage them. You can also see candidates for a particular job...
 <h3>Run on Eclipse</h3>
-<b>note</b>:RDBMS used in this project is MySQL.<br/><br/>
+<b>note</b>: RDBMS used in this project is MySQL.<br/><br/>
 1. Install the web server you want to work with(Tomcat , Glassfish ...)<br/>
 2. Download the project or clone it.<br/>
 3. Open Root folder in your favorite Eclipse Java EE version.<br/>
