@@ -642,7 +642,7 @@ public class User
 		{
 			e.printStackTrace();
 		}
-		return "recuiter-home.xhtml";
+		return "recruiter-home.xhtml";
 	}
 	
 	
