@@ -395,7 +395,7 @@ public class Company
 		{
 			e.printStackTrace();
 		}
-		return "recruiter-home.xhtml";
+		return "company-jobs.xhtml";
 	}
 	
 	public void deleteCompany(int cid , int uid)
