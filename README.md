@@ -10,7 +10,7 @@ This project is a Job Searching and Posting Java EE web application created usin
 1. Install the web server you want to work with(Tomcat , Glassfish ...).<br/>
 2. Download the project or clone it.<br/>
 3. Open Root folder in your Eclipse Java EE IDE.<br/>
-4. Add needed libraries (can be found in lib folders) to your classpath.<br/>
+4. Add needed libraries (can be found in 'lib' folders) to your classpath.<br/>
 5. Execute the 'Dream-Job.sql' sql file(can be found under 'sql-scripts' folder).<br/>
-6. Modify hibernate.cfg.xml file by providing your database connection username and password.<br/>
+6. Modify 'hibernate.cfg.xml' file by providing your database connection username and password.<br/>
 7. Open the 'WebContent' folder then right click on 'home.xhtml' and select 'Run as' then 'Run on server'.
