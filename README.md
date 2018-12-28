@@ -13,4 +13,4 @@ This project is a Job Searching and Posting Java EE web application created usin
 4. Add needed libraries (can be found in 'lib' folders) to your classpath.<br/>
 5. Execute the 'Dream-Job.sql' sql file(can be found under 'sql-scripts' folder).<br/>
 6. Modify 'hibernate.cfg.xml' file by providing your database connection username and password.<br/>
-7. Open the 'WebContent' folder then right click on 'home.xhtml' file and select 'Run as' then 'Run on server'.
+7. Open 'WebContent' folder and run 'home.xhtml' file on server'.
