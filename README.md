@@ -2,7 +2,7 @@
 
 <h3>Description</h3>
 This project is a Job Searching and Posting Java EE web application created using JSF(Java Server Faces), Hibernate, Java and MySQL.
-<h3>Features:</h3>
+<h3>Features</h3>
 - Create an account by providing personal informations and credentials.<br/>
 - As a normal user, you can search, save and apply for jobs. You can then manage your saved jobs and applications. You can also upload your resume/CV...<br/>
 - As a recruiter, you can add a company and upload to it job offers. You can then manage your companies and their jobs. You can also see candidates of a particular job you uploaded...
